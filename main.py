@@ -64,7 +64,27 @@ key = "messwiththebestdieliketherest"
 
 #vigenere_sq()
 
-res = encrypt_vigenere(key, "plaintext", alphabet)
-print(res)
-res = decrypt_vigenere(key, res, alphabet)
-print(res)
+while True:
+	action = input("Would you like to encrypt, decrypt, or quit?? (1/encrypt) (2/decrypt) (quit): ").strip()
+	if action == "encrypt":
+		action = 1
+	elif action == "decrypt":
+		action = 2
+	elif action == "quit":
+		break
+	elif action in ["1","2"]:
+		action = int(action)
+	else:
+		action = 3 #Incorrect input
+		print("Invalid selection! Please try again")
+
+	if action != 3:
+		key = input("What is the key for the message?: ")
+		print(f"action: {action}")
+		if action == 1:
+			res = encrypt_vigenere(key, input("What plaintext would you like to encrypt?: "), alphabet)
+		elif action == 2:
+			res = decrypt_vigenere(key, input("What ciphertext would you like to decrypt?: "), alphabet)
+		else:
+			print("I have no clue what you did, but something's screwed up.")
+		print(res)
