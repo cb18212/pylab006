@@ -44,7 +44,10 @@ def encrypt_vigenere(key, plaintext, alphabet):
 	#print(plaintext)
 	result = ""
 	for i in range(len(plaintext)):
-		result += alphabet[vigenere_index(key[i], plaintext[i], alphabet)]
+		if plaintext[i] == " ":
+			result += " "
+		else:
+			result += alphabet[vigenere_index(key[i], plaintext[i], alphabet)]
 	return result
 
 def decrypt_vigenere(key, ciphertext, alphabet):
@@ -55,7 +58,10 @@ def decrypt_vigenere(key, ciphertext, alphabet):
 
 	result = ""
 	for index in range(len(ciphertext)):
-		result += index_to_letter(letter_to_index(ciphertext[index], alphabet) - letter_to_index(key[index], alphabet), alphabet)
+		if ciphertext[index] == " ":
+			result += " "
+		else:
+			result += index_to_letter(letter_to_index(ciphertext[index], alphabet) - letter_to_index(key[index], alphabet), alphabet)
 	return result
 
 key = "messwiththebestdieliketherest"
